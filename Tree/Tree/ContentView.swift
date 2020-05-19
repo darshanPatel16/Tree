@@ -9,8 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var fetch = TeamFetcher()
+    
     var body: some View {
-        TreeNodeView()
+        
+        List(fetch.team) { todo in
+            VStack(alignment: .leading) {
+                Text(todo.firstName!)
+            }
+        }
+        
+//        TreeNodeView()
     }
 }
 

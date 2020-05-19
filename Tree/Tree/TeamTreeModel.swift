@@ -7,18 +7,20 @@
 //
 
 import Foundation
-struct TeamTreeModel: Decodable {
+struct TeamTreeModel: Decodable, Identifiable {
     
-    public var userId: String
-    public var firstName: String
-    public var lastName: String
-    public var emailAddress: String
-    public var phoneNumber: String
-    public var organizationDistance: Int
-    public var teamCount: Int
-    public var leadCount: Int
+    public var id: Int?
+    public var userId: String?
+    public var firstName: String?
+    public var lastName: String?
+    public var emailAddress: String?
+    public var phoneNumber: String?
+    public var organizationDistance: Int?
+    public var teamCount: Int?
+    public var leadCount: Int?
     
     enum CodingKeys: String, CodingKey {
+        case id = "id"
         case userId = "UserId"
         case firstName = "FirstName"
         case lastName = "LastName"

@@ -16,23 +16,16 @@ public class TeamFetcher: ObservableObject {
     }
     
     func load() {
-//        URLSession.shared.dataTask(with: url) {(data,response,error) in
-            do {
-                if let path = Bundle.main.path(forResource: "treeResponse", ofType: "json") {
-                    let d = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                    let decodedLists = try JSONDecoder().decode([TeamTreeModel].self, from: d)
-                    DispatchQueue.main.async {
-                        self.team = decodedLists
-                        print(decodedLists)
-                    }
-                }else {
-                    print("No Data")
-                }
-            } catch {
-                print ("Error")
+        do {
+            if let path = Bundle.main.path(forResource: "treeResponse", ofType: "json") {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let decodedLists = try JSONDecoder().decode([TeamTreeModel].self, from: data)
+                self.team = decodedLists
+            } else {
+                print("No Data")
             }
-            
-//        }.resume()
-         
+        } catch {
+            print ("Error")
+        }
     }
 }
