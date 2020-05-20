@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct TreeNodeView: View {
+    
+    var name = String()
+    var teamCount = Int()
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .center) {
@@ -19,38 +23,39 @@ struct TreeNodeView: View {
                 .frame(width: 50, height: 50, alignment: .center)
                 Spacer()
             }.padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
-            Text("Slawomir Pelikan testing")
+            Text(name)
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.headline)
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
                 .lineLimit(nil)
-            Button(action: {
-                print("test")
-            }) {
-                HStack {
-                    Text("8").font(.title).fontWeight(.bold)
-                        .foregroundColor(.white).padding()
-                    Spacer()
-                    Image("downArrow")
-                        .renderingMode(.template)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 25, height: 25, alignment: .center)
-                        .foregroundColor(.white)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))
-                }
-                .aspectRatio(contentMode: .fill)
-                .background(Color.blue)
-            }.cornerRadius(8, corners: [.bottomLeft, .bottomRight])
-        }
-        .aspectRatio(contentMode: .fit)
-        .frame(width: 150, height: nil, alignment: .center)
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2))
+                .frame(width: 150, height: nil, alignment: .center)
+            if teamCount > 0 {
+                Button(action: {
+                    print("test button action")
+                }) {
+                    HStack {
+                        Text("\(teamCount)").font(.title).fontWeight(.bold)
+                            .foregroundColor(.white).padding()
+                        Spacer()
+                        Image("downArrow")
+                            .renderingMode(.template)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25, height: 25, alignment: .center)
+                            .foregroundColor(.white)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))
+                    }.aspectRatio(contentMode: .fill)
+                     .background(Color.blue)
+                }.cornerRadius(8, corners: [.bottomLeft, .bottomRight])
+            }
+        }.aspectRatio(contentMode: .fit)
+         .frame(width: 150, height: nil, alignment: .center)
+         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2))
     }
 }
 
 struct TreeNodeView_Previews: PreviewProvider {
     static var previews: some View {
-        TreeNodeView()
+        TreeNodeView(name: "Slawomir Testing account", teamCount: 3)
     }
 }

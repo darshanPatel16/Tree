@@ -10,17 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var fetch = TeamFetcher()
+//    @ObservedObject var fetch = TeamFetcher()
     
     var body: some View {
         
-        List(fetch.team) { todo in
-            VStack(alignment: .leading) {
-                Text(todo.firstName!)
-            }
-        }
-        
-//        TreeNodeView()
+//        List(fetch.team) { todo in
+//            VStack(alignment: .leading) {
+//                Text(todo.firstName!)
+//            }
+//        }
+//
+        TreeNodeView()
     }
 }
 
