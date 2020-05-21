@@ -10,8 +10,10 @@ import SwiftUI
 
 struct TreeNodeView: View {
     
-    var name = String()
-    var teamCount = Int()
+    var name: String = "Slawomir Testing account"
+    var teamCount: Int = 1
+    
+    @State var scale: CGFloat = 1.0
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -51,11 +53,17 @@ struct TreeNodeView: View {
         }.aspectRatio(contentMode: .fit)
          .frame(width: 150, height: nil, alignment: .center)
          .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 2))
+            .scaleEffect(self.scale)
+            .gesture(MagnificationGesture().onChanged({ (scale) in
+                self.scale = scale.magnitude
+            }).onEnded({ (scaleFinal) in
+                self.scale = scaleFinal.magnitude
+            }))
     }
 }
 
 struct TreeNodeView_Previews: PreviewProvider {
     static var previews: some View {
-        TreeNodeView(name: "Slawomir Testing account", teamCount: 3)
+        TreeNodeView()
     }
 }
